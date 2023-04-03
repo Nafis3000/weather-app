@@ -2,5 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
 }
+require("dotenv").config()
 
-module.exports = nextConfig
+module.exports = {
+  env: {
+    WEATHER_KEY: process.env.WEATHER_KEY,
+  }
+}

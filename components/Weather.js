@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 
+
 export const Weather = () => {
   const [city, setCity] = React.useState("Saskatoon");
   const [cityValue, setCityValue] = React.useState("Saskatoon");
@@ -10,14 +11,14 @@ export const Weather = () => {
   const [speed, setSpeed] = React.useState(0);
   const [icon, setIcon] = React.useState("");
 
+
   const location = {
-    apiKey: "bb8ba865a2d9d7b6a3c5284ed679a08f",
     fetchCity: function (c) {
       fetch(
         "http://api.openweathermap.org/geo/1.0/direct?q=" +
           c +
           "&limit=1&appid=" +
-          this.apiKey
+          process.env.WEATHER_KEY
       )
         .then((response) => response.json())
         .then((data) => this.getLocation(data))
@@ -37,7 +38,7 @@ export const Weather = () => {
           "&lon=" +
           lonny +
           "&units=metric&appid=" +
-          this.apiKey
+          process.env.WEATHER_KEY
       )
         .then((response) => response.json())
         .then((data) => this.displayWeather(data));
@@ -82,7 +83,7 @@ export const Weather = () => {
           className="absolute object-cover w-full h-full"
         />
 
-        <div className="bg-neutral-200 text-black p-10 flex flex-col justify-between absolute shadow-2xl rounded">
+        <div className="bg-neutral-200 text-black p-10 flex flex-col justify-between absolute shadow-2xl rounded opacity-95">
           <input
             type="text"
             onChange={handleChange}
